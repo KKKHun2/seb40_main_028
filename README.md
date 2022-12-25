@@ -8,9 +8,10 @@
 - 또한 깃허브 칸반을 이용해 개인 작업을 목록화하여 시각적으로 진행 상황 이해를 쉽게하고,  
 적극적인 커뮤니케이션을 위해 데일리 회의에서 각자 현재 상황 및 개발 내용을 공유하였습니다.
 
-### 근로그 배포주소 :https://seb40-main-028.vercel.app/
+### 근로그 배포주소 :https://realguenlog.vercel.app/
 ### QR코드 :<br />
-![근로그사이트](https://user-images.githubusercontent.com/105702862/209471149-6c0872d7-deed-4557-bab2-2248c6022344.PNG)
+![근로그사이트](https://user-images.githubusercontent.com/105702862/209471447-f1c15b2d-3f05-42fc-a0fa-3db392ffa58d.PNG)
+
 
 
 
