@@ -1,11 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
 import { Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
-import { TokenState } from "../../state/UserState";
 import Loading from "../Loading";
 
 const YouTubeContainer = () => {
@@ -13,17 +11,19 @@ const YouTubeContainer = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [videos, setVideos] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get(
+  const getVideo = async () => {
+    try {
+      const res = await axios.get(
         `https://api.apify.com/v2/acts/jupri~youtube-browser/runs/last/dataset/items?token=apify_api_${API}`
-      )
-      .then((res) => {
-        setVideos(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      );
+      setVideos(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getVideo();
   }, []);
 
   useEffect(() => {
@@ -63,7 +63,9 @@ const YouTubeContainer = () => {
                     {selectedVideo === idx ? (
                       <div className="w-full relative ">
                         <img
-                          src={video.thumbnails[0].url}
+                          src={
+                            video?.thumbnails?.[0]?.url ?? defaultThumbnailImage
+                          }
                           className="thumnails w-[28em] object-contain rounded-md aspect-video overflow-hidden blur-[0.1em] "
                           alt="video-thumbnails"
                         />
@@ -79,7 +81,10 @@ const YouTubeContainer = () => {
                       </div>
                     ) : (
                       <img
-                        src={video.thumbnails[0].url}
+                        src={
+                          video?.thumbnails?.[0]?.url ??
+                          "https://i.ytimg.com/vi/IyoJehk7mO0/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLARi2iuXphs3fJiZDzRi1piwRkTNg"
+                        }
                         className="thumnails max-h-inital w-[28em] object-contain rounded-md aspect-video overflow-hidden "
                         alt="video-thumbnails"
                       />
